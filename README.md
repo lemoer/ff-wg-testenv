@@ -40,7 +40,7 @@ Run `./wg_testenv2.sh vxlan`:
 
 ``` mermaid
 graph TD
-    S --> T>192.168.232.1]
+    S --> T>192.168.122.1]
     A --- D(wgtest1)
     D --> E>fe80::1]
     B --> C>192.168.232.1]
@@ -78,7 +78,7 @@ graph TD
     S2 --> T>192.168.232.1]
     A --- D(wgtest1)
     D --> E>fe80::1]
-    B --> C>192.168.232.1]
+    B --> C>192.168.122.1]
     B --> D
     A[side1] --- B($lower_iface)
     D --> S(mesh-vpn1/vxlan)
