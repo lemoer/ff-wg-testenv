@@ -2,7 +2,7 @@
 
 This script supports three modes: `wg`, `wg+vxlan` and `wg+vxlan+batman`. In the first mode, it sets only a wireguard tunnel up. In the second mode, it additionally configures a vxlan on top of it. In the third mode, batman is added on top of the stack.
 
-The script always configures the IPs `192.168.122.1` and `192.168.122.2` on the top layer interfaces. So no matter which of the three modes you are using, you can always do iperf3 between the top layers.
+The script always configures the IPs `192.168.122.1` and `192.168.122.2` on the top layer interfaces. So no matter which of the three modes you are using, you can always do iperf3 between the top layers based on these two IPs.
 
 ## `wg`
 
@@ -34,7 +34,7 @@ classDef SkipLevel width:0px,text-align:center;
 class A,F SkipLevel
 ```
 
-(The IPs on $lower_iface are also assigned automatically by the script.)
+(The IPs on $lower_iface are also assigned by `wg_testenv2.sh`.)
 
 ## `wg+vxlan`
 
@@ -70,7 +70,7 @@ classDef SkipLevel width:0px,text-align:center;
 class A,F SkipLevel
 ```
 
-(The IPs on $lower_iface are also assigned automatically by the script.)
+(The IPs on $lower_iface are also assigned by `wg_testenv2.sh`.)
 
 ## `wg+vxlan+batman`
 
@@ -108,7 +108,7 @@ classDef SkipLevel width:0px,text-align:center;
 class A,F SkipLevel
 ```
 
-(The IPs on $lower_iface are also assigned automatically by the script.)
+(The IPs on $lower_iface are also assigned by `wg_testenv2.sh`.)
 
 ## Performance Testing
 
