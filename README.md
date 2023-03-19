@@ -120,10 +120,10 @@ root@side2 # iperf3 -c 192.168.122.1
 
 ## Install/Setup
 
-Programs:
+Run these theps on both sides:
 - `apt install batctl`
 - `apt install wireguard`
-- open 4750/udp for vxlan in your ipv6 firewall.
+- open 4750/udp for vxlan in your ipv6 firewall (if you have a firewall).
 - open wg_testenv2.sh and adjust the variables `lower_iface=...` and `side=X` to your needs.
 - run `./wg_testenv2.sh ...`
 
