@@ -126,7 +126,7 @@ Programs:
 - run `./wg_testenv2.sh ...`
 
 You can always cleanup with:
-- `wg_testenv2.sh cleanup`
+- `./wg_testenv2.sh cleanup`
 
 ## Debugging
 
@@ -146,7 +146,7 @@ root@side2 # tcpdump -n -i bat-test2
 Observe the TQ of the batman neighbors:
 
 ```
-root@side1 # sudo batctl -m bat-test1 o
+root@side1 # batctl -m bat-test1 o
 Warning - option -m was deprecated and will be removed in the future
 [B.A.T.M.A.N. adv 2022.3, MainIF/MAC: mesh-vpn1/be:e6:02:f7:76:dc (bat-test1/46:44:a0:1a:45:13 BATMAN_IV)]
     Originator        last-seen (#/255) Nexthop           [outgoingIF]
