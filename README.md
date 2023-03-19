@@ -6,9 +6,7 @@ The script always configures the IPs `192.168.122.1` and `192.168.122.2` on the 
 
 ## `wg`
 
-This sets a wireguard tunnel up, so it can be used.
-
-Just run `./wg_testenv2.sh`:
+Run `./wg_testenv2.sh`. Then the following interface config is applied:
 
 ```mermaid
 graph TD
@@ -36,9 +34,11 @@ classDef SkipLevel width:0px,text-align:center;
 class A,F SkipLevel
 ```
 
+(The IPs on $lower_iface are also assigned automatically by the script.)
+
 ## `wg+vxlan`
 
-Run `./wg_testenv2.sh vxlan`:
+Run `./wg_testenv2.sh vxlan`. Then the following interface config is applied:
 
 ``` mermaid
 graph TD
@@ -70,9 +70,11 @@ classDef SkipLevel width:0px,text-align:center;
 class A,F SkipLevel
 ```
 
+(The IPs on $lower_iface are also assigned automatically by the script.)
+
 ## `wg+vxlan+batman`
 
-Run `./wg_testenv2.sh batman`:
+Run `./wg_testenv2.sh batman`. Then the following interface config is applied:
 
 ``` mermaid
 graph TD
@@ -106,7 +108,7 @@ classDef SkipLevel width:0px,text-align:center;
 class A,F SkipLevel
 ```
 
-
+(The IPs on $lower_iface are also assigned automatically by the script.)
 
 ## Performance Testing
 
