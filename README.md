@@ -75,10 +75,10 @@ Run `./wg_testenv2.sh batman`:
 ``` mermaid
 graph TD
     S --> S2(bat-test1/batman)
-    S2 --> T>192.168.232.1]
+    S2 --> T>192.168.122.1]
     A --- D(wgtest1)
     D --> E>fe80::1]
-    B --> C>192.168.122.1]
+    B --> C>192.168.232.1]
     B --> D
     A[side1] --- B($lower_iface)
     D --> S(mesh-vpn1/vxlan)
