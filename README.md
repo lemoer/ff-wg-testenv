@@ -2,29 +2,111 @@
 
 This script supports three modes: `wg`, `wg+vxlan` and `wg+vxlan+batman`.
 
-1. `./wg_testenv2.sh`: setup a wireguard tunnel and use it.
-  - The script adds/configures the following interfaces:
-    - `${lower_iface}`
-      - IP: 192.168.232.X
-    - `wgtestX` (wireguard interface to 192.168.232.Y)
-      - IP: fe80::X
-      - IP: 192.168.122.X
-2. `./wg_testenv2.sh vxlan`: setup a wireguard tunnel and use a vxlan above it.
-    - `${lower_iface}`
-      - IP: 192.168.232.X
-    - `wgtestX` (wireguard interface to 192.168.232.Y)
-      - IP: fe80::X
-    - `mesh-vpnX` (vxlan interface to fe80::Y)
-      - IP: 192.168.122.X
-3. `./wg_testenv2.sh batman` setup a wireguard tunnel, stack vxlan and batman on top of it. 
-  - The script adds/configures the following interfaces:
-    - `${lower_iface}`
-      - IP: 192.168.232.X
-    - `wgtestX` (wireguard interface to 192.168.232.Y)
-      - IP: fe80::X
-    - `mesh-vpnX` (vxlan interface to fe80::Y)
-    - `bat-testY`
-      - IP: 192.168.122.X
+## `wg`
+
+This sets a wireguard tunnel up, so it can be used.
+
+Just run `./wg_testenv2.sh`:
+
+```mermaid
+graph TD
+    A --- D(wgtest1)
+    D --> E>192.168.122.1, fe80::1]
+    B --> C>192.168.232.1]
+    B --> D
+    A[side1] --- B($lower_iface)
+    
+    X(LAN) --> B
+    X --> G
+    
+    F[side2] --- G($lower_iface)
+    G --> H>192.168.232.2]
+    G --> I
+    F --- I(wgtest2)
+    I --> J>192.168.122.2, fe80::2]
+
+linkStyle 4 stroke-width:0px;
+linkStyle 0 stroke-width:0px;
+linkStyle 7 stroke-width:0px;
+linkStyle 10 stroke-width:0px;
+
+classDef SkipLevel width:0px,text-align:center;
+class A,F SkipLevel
+```
+
+## `wg+vxlan`
+
+Run `./wg_testenv2.sh vxlan`:
+
+``` mermaid
+graph TD
+    S --> T>192.168.232.1]
+    A --- D(wgtest1)
+    D --> E>fe80::1]
+    B --> C>192.168.232.1]
+    B --> D
+    A[side1] --- B($lower_iface)
+    D --> S(mesh-vpn1/vxlan)
+    
+    X(LAN) --> B
+    X --> G
+    
+    F[side2] --- G($lower_iface)
+    G --> H>192.168.232.2]
+    G --> I
+    F --- I(wgtest2)
+    I --> J>fe80::2]
+    I --> K(mesh-vpn2/vxlan)
+    K --> L>192.168.122.2]
+
+linkStyle 9 stroke-width:0px;
+linkStyle 5 stroke-width:0px;
+linkStyle 1 stroke-width:0px;
+linkStyle 12 stroke-width:0px;
+
+classDef SkipLevel width:0px,text-align:center;
+class A,F SkipLevel
+```
+
+## `wg+vxlan+batman`
+
+Run `./wg_testenv2.sh batman`:
+
+``` mermaid
+graph TD
+    S --> S2(bat-test1/batman)
+    S2 --> T>192.168.232.1]
+    A --- D(wgtest1)
+    D --> E>fe80::1]
+    B --> C>192.168.232.1]
+    B --> D
+    A[side1] --- B($lower_iface)
+    D --> S(mesh-vpn1/vxlan)
+    
+    X(LAN) --> B
+    X --> G
+    
+    F[side2] --- G($lower_iface)
+    G --> H>192.168.232.2]
+    G --> I
+    F --- I(wgtest2)
+    I --> J>fe80::2]
+    I --> K(mesh-vpn2/vxlan)
+    K --> K2(bat-test2/batman)
+    K2 --> L>192.168.122.2]
+
+linkStyle 2 stroke-width:0px;
+linkStyle 6 stroke-width:0px;
+linkStyle 10 stroke-width:0px;
+linkStyle 13 stroke-width:0px;
+
+classDef SkipLevel width:0px,text-align:center;
+class A,F SkipLevel
+```
+
+
+
+## Performance Testing
 
 You can use the 192.168.122.X ips to do iperf3 on the highest interface level.
 ```
