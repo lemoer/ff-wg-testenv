@@ -1,6 +1,8 @@
 # wg_testenv2.sh
 
-This script supports three modes: `wg`, `wg+vxlan` and `wg+vxlan+batman`.
+This script supports three modes: `wg`, `wg+vxlan` and `wg+vxlan+batman`. In the first mode, it sets only a wireguard tunnel up. In the second mode, it additionally configures a vxlan on top of it. In the third mode, batman is added on top of the stack.
+
+The script always configures the IPs `192.168.122.1` and `192.168.122.2` on the top layer interfaces. So no matter which of the three modes you are using, you can always do iperf3 between the top layers.
 
 ## `wg`
 
