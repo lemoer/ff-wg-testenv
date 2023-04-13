@@ -19,15 +19,15 @@ if [ "${side}" -eq 1 ]; then
 	test -d /sys/class/net/bat-test1 && ip link del bat-test1
 	test -d /sys/class/net/mesh-vpn1 && ip link del mesh-vpn1
 	test -d /sys/class/net/wgtest1 && ip link del wgtest1
-	if ip address show ${lower_iface} | grep 192.168.122.1; then
-		ip addr del 192.168.122.1/24 dev ${lower_iface}
+	if ip address show ${lower_iface} | grep 192.168.232.1; then
+		ip addr del 192.168.232.1/24 dev ${lower_iface}
 	fi
 else
 	test -d /sys/class/net/wgtest2 && ip link del wgtest2
 	test -d /sys/class/net/mesh-vpn2 && ip link del mesh-vpn2
 	test -d /sys/class/net/bat-test2 && ip link del bat-test2
-	if ip address show ${lower_iface} | grep 192.168.122.2; then
-		ip addr del 192.168.122.2/24 dev ${lower_iface}
+	if ip address show ${lower_iface} | grep 192.168.232.2; then
+		ip addr del 192.168.232.2/24 dev ${lower_iface}
 	fi
 fi
 
